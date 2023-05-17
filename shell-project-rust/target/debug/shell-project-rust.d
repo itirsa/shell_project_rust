@@ -1,0 +1,1 @@
+/Users/itirsayar/Desktop/377\ Final/Shell-Project-Rust/shell-project-rust/target/debug/shell-project-rust: /Users/itirsayar/Desktop/377\ Final/Shell-Project-Rust/shell-project-rust/src/main.rs /Users/itirsayar/Desktop/377\ Final/Shell-Project-Rust/shell-project-rust/src/simple_shell.rs

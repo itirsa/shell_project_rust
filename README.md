@@ -32,13 +32,13 @@ To use the Simple Shell, follow these steps:
 2. Run the executable using `cargo run`.
 
 Once the shell is running, you can enter commands and execute them. For example:
-$ ls
-total 1320
-drwxr-xr-x 5 itirsayar staff 160 May 16 22:29 .
-drwxr-xr-x 6 itirsayar staff 192 May 16 20:53 ..
--rwxr-xr-x 1 itirsayar staff 661464 May 16 22:29 main
--rw-r--r-- 1 itirsayar staff 749 May 16 22:27 main.rs
--rw-r--r-- 1 itirsayar staff 4238 May 16 22:29 simple_shell.rs
+  $ ls
+  total 1320
+  rwxr-xr-x 5 itirsayar staff 160 May 16 22:29 .
+  drwxr-xr-x 6 itirsayar staff 192 May 16 20:53 ..
+  -rwxr-xr-x 1 itirsayar staff 661464 May 16 22:29 main
+  -rw-r--r-- 1 itirsayar staff 749 May 16 22:27 main.rs
+  -rw-r--r-- 1 itirsayar staff 4238 May 16 22:29 simple_shell.rs
 
 To terminate the shell, enter the `quit` command.
 

@@ -17,7 +17,6 @@ impl SimpleShell {
     }
 
     pub fn exec_command(&self, cmd_tokens: &[String]) {
-      // Check for the pipe symbol ('|') in the command tokens
       if let Some(pipe_index) = cmd_tokens.iter().position(|token| token == "|") {
           // Split the command tokens into two parts: before and after the pipe symbol
           let (cmd_tokens_left, cmd_tokens_right) = cmd_tokens.split_at(pipe_index);
@@ -35,9 +34,30 @@ impl SimpleShell {
           } else {
               eprintln!("Error executing command: {:?}", cmd_tokens_left);
           }
-      } else {
-          // No pipe symbol found, execute the command normally
-          self.execute_command(cmd_tokens);
+      } else if let Some(cmd) = cmd_tokens.get(0) {
+          match cmd.as_str() {
+              "ls" => self.ls(cmd_tokens),
+              _ => {
+                  // No specific command found, execute the command normally
+                  let output = Command::new(cmd)
+                      .args(&cmd_tokens[1..])
+                      .output();
+
+                  match output {
+                      Ok(output) => {
+                          if !output.stdout.is_empty() {
+                              io::stdout().write_all(&output.stdout).unwrap();
+                          }
+                          if !output.stderr.is_empty() {
+                              io::stderr().write_all(&output.stderr).unwrap();
+                          }
+                      }
+                      Err(error) => {
+                          eprintln!("Error executing command: {}", error);
+                      }
+                  }
+              }
+          }
       }
   }
   fn execute_command(&self, cmd_tokens: &[String]) -> std::io::Result<std::process::Output> {
@@ -79,4 +99,24 @@ fn execute_command_with_input(&self, cmd_tokens: &[String], input: &[u8]) {
             false
         }
     }
+
+    pub fn ls(&self, _cmd_tokens: &[String]) {
+      let output = Command::new("ls")
+          .arg("-al")
+          .output();
+
+      match output {
+          Ok(output) => {
+              if !output.stdout.is_empty() {
+                  io::stdout().write_all(&output.stdout).unwrap();
+              }
+              if !output.stderr.is_empty() {
+                  io::stderr().write_all(&output.stderr).unwrap();
+              }
+          }
+          Err(error) => {
+              eprintln!("Error executing command: {}", error);
+          }
+      }
+  }
 }

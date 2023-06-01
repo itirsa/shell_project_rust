@@ -53,5 +53,3 @@ To terminate the shell, enter the `quit` command.
 
 This project is licensed under the [MIT License](LICENSE).
 
-## Link to my presentation and demo
-Click to watch my [video](https://drive.google.com/file/d/1dwd_R1K2vsHaSLi3PEVGf4JIyKPcE7cl/view)!
